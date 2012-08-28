@@ -70,6 +70,60 @@ namespace SketchfabExporterforSW
             }
         }
 
+        internal string ModelName
+        {
+            get
+            {
+                var title = SwApp.IActiveDoc2.get_SummaryInfo((int)swSummInfoField_e.swSumInfoTitle);
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    string path = SwApp.IActiveDoc2.GetPathName();
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        title = System.IO.Path.GetFileNameWithoutExtension(path);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    title = SwApp.IActiveDoc2.GetTitle();
+                    title = System.IO.Path.GetFileNameWithoutExtension(title);
+                }
+
+                return title;
+            }
+
+            set
+            {
+                SwApp.IActiveDoc2.set_SummaryInfo((int)swSummInfoField_e.swSumInfoTitle, value);
+            }
+        }
+
+        internal string Description
+        {
+            get
+            {
+                return SwApp.IActiveDoc2.get_SummaryInfo((int)swSummInfoField_e.swSumInfoComment);
+            }
+            set
+            {
+                SwApp.IActiveDoc2.set_SummaryInfo((int)swSummInfoField_e.swSumInfoComment, value);
+            }
+        }
+
+        internal string Tags
+        {
+            get
+            {
+                return SwApp.IActiveDoc2.get_SummaryInfo((int)swSummInfoField_e.swSumInfoKeywords);
+            }
+            set
+            {
+                SwApp.IActiveDoc2.set_SummaryInfo((int)swSummInfoField_e.swSumInfoKeywords, value);
+            }
+        }
+
         #endregion
 
         #region SolidWorks Registration
@@ -183,7 +237,7 @@ namespace SketchfabExporterforSW
             {
                 removeUI();
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -211,29 +265,33 @@ namespace SketchfabExporterforSW
             string callback = "PublishCmd_Callback";
             string enable_mthd = "Publish_Enable";
             int position = 16; // Before 'Publish to 3DVia.com...'
-            int showInDocumentType = (int)swDocumentTypes_e.swDocPART;
+            int[] showInDocumentTypes = new int[2] { (int)swDocumentTypes_e.swDocPART, (int)swDocumentTypes_e.swDocASSEMBLY };
 
             string file_path = bitmapHandler.CreateFileFromResourceBitmap("SketchfabExporterforSW.sketchfab.bmp", this.GetType().Assembly);
 
 
-
-            SwApp.AddMenuItem4(
-                showInDocumentType,
-                Cookie,
-                PublishMenuTitle,
-                position,
-                callback,
-                enable_mthd,
-                hint,
-                file_path);
+            foreach (var type in showInDocumentTypes)
+            {
+                SwApp.AddMenuItem4(
+                    type,
+                    Cookie,
+                    PublishMenuTitle,
+                    position,
+                    callback,
+                    enable_mthd,
+                    hint,
+                    file_path);
+            }
 
         }
 
         void removeUI()
         {
-            int showInDocumentType = (int)swDocumentTypes_e.swDocPART;
+            int[] showInDocumentTypes = new int[2] { (int)swDocumentTypes_e.swDocPART, (int)swDocumentTypes_e.swDocASSEMBLY };
+
             string callback = "PublishCmd_Callback";
-            SwApp.RemoveMenu(showInDocumentType, PublishMenuTitle, callback);
+            foreach (var type in showInDocumentTypes)
+                SwApp.RemoveMenu(type, PublishMenuTitle, callback);
             if (bitmapHandler != null)
                 bitmapHandler.CleanFiles();
         }
@@ -248,6 +306,7 @@ namespace SketchfabExporterforSW
                 return sketchfab_menu + "@" + file_menu;
             }
         }
+
         public void PublishCmd_Callback()
         {
             try
@@ -256,21 +315,89 @@ namespace SketchfabExporterforSW
                 File.Delete(tmp_file_path);
                 tmp_file_path = Path.ChangeExtension(tmp_file_path, ".stl");
 
+                int modelType = SwApp.IActiveDoc2.GetType();
+                bool curOptionValue = false;
+                if (modelType == (int)swDocumentTypes_e.swDocASSEMBLY)
+                {
+                    curOptionValue = SwApp.GetUserPreferenceToggle
+                    (
+                        (int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile
+                    );
+
+                    if (curOptionValue == false)
+                    {
+                        SwApp.SetUserPreferenceToggle
+                        (
+                            (int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile,
+                            true
+                        );
+                    }
+                }
+
                 int errors = 0;
                 int warnings = 0;
                 bool isOK = SwApp.IActiveDoc2.Extension.SaveAs(
-                    tmp_file_path,
-                    (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
-                    (int)swSaveAsOptions_e.swSaveAsOptions_Silent,
-                    null,
-                    ref errors,
-                    ref warnings);
+                        tmp_file_path,
+                        (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
+                        (int)swSaveAsOptions_e.swSaveAsOptions_Silent | (int)swSaveAsOptions_e.swSaveAsOptions_OverrideSaveEmodel,
+                        null,
+                        ref errors,
+                        ref warnings);
 
+                string thumbnail = "";// saveImage();
+
+                //***************************************
+
+                // magic happens here
+                SketchfabPublisher.ParametersForm form = new SketchfabPublisher.ParametersForm(
+                    modelPath: tmp_file_path,
+                    modelName: this.ModelName,
+                    description: this.Description,
+                    tags: this.Tags,
+                    token: null,
+                    imagePath: thumbnail
+                );
+
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK && form.ToSaveSummaryInfo)
+                {
+                    this.ModelName = form.ModelTitle;
+                    this.Description = form.ModelDescription;
+                    this.Tags = form.ModelTags;
+                }
+
+                //***************************************
+
+                if (modelType == (int)swDocumentTypes_e.swDocASSEMBLY)
+                {
+                    SwApp.SetUserPreferenceToggle
+                    (
+                        (int)swUserPreferenceToggle_e.swSTLComponentsIntoOneFile,
+                        curOptionValue
+                     );
+                }
+
+                //File.Delete(thumbnail);
                 File.Delete(tmp_file_path);
             }
             catch
             { }
 
+        }
+
+        private string saveImage()
+        {
+            string path = System.IO.Path.GetTempFileName();
+            File.Delete(path);
+            path = Path.ChangeExtension(path, ".jpg");
+
+            bool bRet = SwApp.IActiveDoc2.SaveAs(path);
+            if (false == File.Exists(path))
+                return "";
+
+            //CompressImage(path);
+            return path;
         }
 
         string getSWVersion()

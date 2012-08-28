@@ -59,6 +59,15 @@
   <ItemGroup>
     <EmbeddedResource Include="sketchfab.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SketchfabPublisher\SketchfabPublisher.csproj">
+      <Project>{49CFCA01-C453-4474-8C18-A7ED07051B62}</Project>
+      <Name>SketchfabPublisher</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo-Sketchfab-black-hd-1024x214.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>set FMWK="v4.0.30319"
