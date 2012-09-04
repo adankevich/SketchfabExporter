@@ -355,7 +355,8 @@ namespace SketchfabExporterforSW
                     description: this.Description,
                     tags: this.Tags,
                     token: null,
-                    imagePath: thumbnail
+                    imagePath: thumbnail,
+                    source: "solidworks-" + getSWVersion()
                 );
 
                 var result = form.ShowDialog();
@@ -402,16 +403,24 @@ namespace SketchfabExporterforSW
 
         string getSWVersion()
         {
-            string version = SwApp.RevisionNumber();
+            int version = -1;
+            bool iOK = Int32.TryParse(SwApp.RevisionNumber().Split('.')[0], out version);
 
-            if (version.StartsWith("17"))
-                return "2009";
-            else if (version.StartsWith("18"))
-                return "2010";
-            else if (version.StartsWith("19"))
-                return "2011";
-            else
-                throw new Exception("Unsupported SW version");
+            if (iOK)
+            {
+                version += 1992; // MAGIC NUMBER
+            }
+
+            //if (version.StartsWith("17"))
+            //    return "2009";
+            //else if (version.StartsWith("18"))
+            //    return "2010";
+            //else if (version.StartsWith("19"))
+            //    return "2011";
+            //else
+            //    throw new Exception("Unsupported SW version");
+
+            return version.ToString();
         }
 
         #endregion

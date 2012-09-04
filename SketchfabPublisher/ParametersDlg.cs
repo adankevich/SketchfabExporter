@@ -92,6 +92,12 @@ namespace SketchfabPublisher
             }
         }
 
+        public string Source
+        {
+            get;
+            set;
+        }
+
         public bool ToSaveSummaryInfo
         {
             get
@@ -115,7 +121,8 @@ namespace SketchfabPublisher
             string description = null,
             string tags = null,
             string token = null,
-            string imagePath = null)
+            string imagePath = null,
+            string source = null)
             : this()
         {
             if (!String.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
@@ -130,6 +137,7 @@ namespace SketchfabPublisher
             ModelDescription = description;
             ModelTags = tags;
             APIToken = token;
+            Source = source;
         }
 
         private bool checkInput()
@@ -160,6 +168,7 @@ namespace SketchfabPublisher
                 tags: this.ModelTags,
                 token: this.APIToken,
                 imagePath: this.ImagePath,
+                source: this.Source,
                 warn: ref warn,
                 error: ref error
             );

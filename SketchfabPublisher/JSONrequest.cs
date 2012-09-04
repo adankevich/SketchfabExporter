@@ -63,6 +63,9 @@ namespace SketchfabPublisher
 
         [DataMember]
         internal string thumbnail = null; // base64 encoded png thumbnail (optional)
+
+        [DataMember]
+        internal string source = null; // model origin (optional)
     }
 
     [DataContract]

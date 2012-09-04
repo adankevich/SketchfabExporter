@@ -17,6 +17,7 @@ namespace SketchfabPublisher
             string tags,
             string token,
             string imagePath,
+            string source,
             ref string warn,
             ref string error)
         {
@@ -29,6 +30,7 @@ namespace SketchfabPublisher
                 p.filename = modelName + Path.GetExtension(modelPath);
                 p.tags = tags;
                 p.token = token;
+                p.source = source;
                 //p.thumbnail = Convert.ToBase64String(File.ReadAllBytes(imagePath));
 
                 string json_str = p.stringify();
