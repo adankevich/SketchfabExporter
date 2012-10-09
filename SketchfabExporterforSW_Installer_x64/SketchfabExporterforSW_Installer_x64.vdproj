@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:SketchfabExporterforSW_Installer_x64"
+"ProjectName" = "8:SketchfabExporterforSolidWorks_Installer_x64"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_58864ECCE77DCB52476C6986C840974C"
+        "OwnerKey" = "8:_D63DBFB360E04C47A3B653A4DA34A1F3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D63DBFB360E04C47A3B653A4DA34A1F3"
+        "OwnerKey" = "8:_58864ECCE77DCB52476C6986C840974C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -94,7 +94,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\SketchfabExporterforSW_Installer_x64.msi"
+        "OutputFilename" = "8:Release\\SketchfabExporterforSolidWorks_Installer_x64.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -272,15 +272,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sketchfab Exporter for DS SolidWorks (64 bit)"
-        "ProductCode" = "8:{D1354001-7479-4908-B27E-A7022E76E08E}"
-        "PackageCode" = "8:{16382719-4A53-4571-98A1-1EBE0EE0335A}"
+        "ProductCode" = "8:{EA6A7622-79F1-4201-8850-F3964E4CE33E}"
+        "PackageCode" = "8:{FFFEDDB8-B461-4126-B441-0492ECEDEE66}"
         "UpgradeCode" = "8:{90056015-CDD2-4705-A79F-325CCF395CF2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:Andrey Dankevich"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -42,7 +42,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtToken = new System.Windows.Forms.TextBox();
             this.picThumb = new System.Windows.Forms.PictureBox();
-            this.lblExtension = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -51,6 +50,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.chkSaveSummary = new System.Windows.Forms.CheckBox();
+            this.chkRememberToken = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picThumb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,10 +60,10 @@
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublish.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnPublish.Location = new System.Drawing.Point(205, 356);
+            this.btnPublish.Location = new System.Drawing.Point(245, 380);
             this.btnPublish.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnPublish.Name = "btnPublish";
-            this.btnPublish.Size = new System.Drawing.Size(121, 43);
+            this.btnPublish.Size = new System.Drawing.Size(102, 38);
             this.btnPublish.TabIndex = 5;
             this.btnPublish.Text = "Publish";
             this.btnPublish.UseVisualStyleBackColor = true;
@@ -74,10 +74,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(338, 356);
+            this.btnCancel.Location = new System.Drawing.Point(357, 380);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 43);
+            this.btnCancel.Size = new System.Drawing.Size(102, 38);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.txtTitle.Location = new System.Drawing.Point(135, 73);
             this.txtTitle.MaxLength = 300;
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(293, 31);
+            this.txtTitle.Size = new System.Drawing.Size(324, 31);
             this.txtTitle.TabIndex = 0;
             // 
             // txtDescription
@@ -152,7 +152,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(16, 240);
+            this.label4.Location = new System.Drawing.Point(14, 240);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 13);
@@ -163,7 +163,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(34, 139);
+            this.label5.Location = new System.Drawing.Point(30, 139);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 13);
@@ -200,18 +200,6 @@
             this.picThumb.TabIndex = 13;
             this.picThumb.TabStop = false;
             this.picThumb.Visible = false;
-            // 
-            // lblExtension
-            // 
-            this.lblExtension.AutoSize = true;
-            this.lblExtension.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblExtension.ForeColor = System.Drawing.Color.Gray;
-            this.lblExtension.Location = new System.Drawing.Point(426, 78);
-            this.lblExtension.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblExtension.Name = "lblExtension";
-            this.lblExtension.Size = new System.Drawing.Size(33, 21);
-            this.lblExtension.TabIndex = 15;
-            this.lblExtension.Text = ".ext";
             // 
             // label2
             // 
@@ -287,7 +275,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(8, 365);
+            this.linkLabel1.Location = new System.Drawing.Point(10, 380);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(172, 25);
             this.linkLabel1.TabIndex = 22;
@@ -299,12 +287,25 @@
             // 
             this.chkSaveSummary.AutoSize = true;
             this.chkSaveSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkSaveSummary.Location = new System.Drawing.Point(135, 323);
+            this.chkSaveSummary.Location = new System.Drawing.Point(135, 320);
             this.chkSaveSummary.Name = "chkSaveSummary";
-            this.chkSaveSummary.Size = new System.Drawing.Size(337, 29);
-            this.chkSaveSummary.TabIndex = 23;
-            this.chkSaveSummary.Text = "Save in the file summary information";
+            this.chkSaveSummary.Size = new System.Drawing.Size(261, 29);
+            this.chkSaveSummary.TabIndex = 22;
+            this.chkSaveSummary.Text = "Save the model information";
             this.chkSaveSummary.UseVisualStyleBackColor = true;
+            // 
+            // chkRememberToken
+            // 
+            this.chkRememberToken.AutoSize = true;
+            this.chkRememberToken.Checked = true;
+            this.chkRememberToken.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRememberToken.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkRememberToken.Location = new System.Drawing.Point(136, 343);
+            this.chkRememberToken.Name = "chkRememberToken";
+            this.chkRememberToken.Size = new System.Drawing.Size(203, 29);
+            this.chkRememberToken.TabIndex = 23;
+            this.chkRememberToken.Text = "Remember the token";
+            this.chkRememberToken.UseVisualStyleBackColor = true;
             // 
             // ParametersForm
             // 
@@ -313,7 +314,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(492, 424);
+            this.ClientSize = new System.Drawing.Size(488, 433);
             this.ControlBox = false;
             this.Controls.Add(this.chkSaveSummary);
             this.Controls.Add(this.linkLabel1);
@@ -332,11 +333,11 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPublish);
-            this.Controls.Add(this.lblExtension);
             this.Controls.Add(this.picThumb);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.chkRememberToken);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -369,7 +370,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtToken;
         private System.Windows.Forms.PictureBox picThumb;
-        private System.Windows.Forms.Label lblExtension;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -378,5 +378,6 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox chkSaveSummary;
+        private System.Windows.Forms.CheckBox chkRememberToken;
     }
 }

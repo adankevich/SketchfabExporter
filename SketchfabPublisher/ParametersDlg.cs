@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using SketchfabPublisher.Properties;
 
 namespace SketchfabPublisher
 {
@@ -44,12 +45,12 @@ namespace SketchfabPublisher
         {
             get
             {
-                return lblExtension.Text;
+                return null;// lblExtension.Text;
             }
 
             private set
             {
-                lblExtension.Text = value;
+                //lblExtension.Text = value;
             }
         }
 
@@ -111,8 +112,10 @@ namespace SketchfabPublisher
         public ParametersForm()
         {
             InitializeComponent();
+            
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.txtTitle.Select();
+            this.APIToken = Settings.Default.APIToken;
         }
 
         public ParametersForm(
@@ -183,6 +186,12 @@ namespace SketchfabPublisher
                     "Failed to upload the model to Sketfab.com." + Environment.NewLine +
                     "Error: " + error,
                     "Seketfab Exporter");
+            }
+
+            if (false == String.IsNullOrWhiteSpace(APIToken))
+            {
+                Settings.Default.APIToken = APIToken;
+                Settings.Default.Save();
             }
 
             this.DialogResult = DialogResult.OK;
