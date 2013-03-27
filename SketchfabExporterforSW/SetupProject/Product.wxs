@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?if $(var.Platform) = x64 ?>
+<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+<?define Win64 = "yes" ?>
+<?define IsWin64Build ?>
+<?define ProductName = "Sketchfab Exporter for SolidWorks x64" ?>
+
+<?else ?>
+<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+<?define Win64 = "no" ?>
+<?define ProductName = "Sketchfab Exporter for SolidWorks" ?>
+<?endif ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="$(var.ProductName)"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Sketchfab"
+           UpgradeCode="11991878-d99b-473c-b19d-163c972a8421">
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of $(var.ProductName) is already installed."
+      Schedule="afterInstallInitialize"
+      AllowSameVersionUpgrades="yes"/>
+    <MediaTemplate EmbedCab="yes" />
+
+    <!--Product Icon-->
+    <Icon Id="AddRemoveIcon" SourceFile="icon64.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="AddRemoveIcon"/>
+    
+    <Property Id="ALLUSERS" Value="1" />
+
+    <!--Disabling "Change/Modify" button in ARP and maintenance dialog-->
+    <Property Id="ARPNOMODIFY" Value="1" />
+
+    <?if $(var.Platform) = "x86"?>
+    <Condition Message="Please use 32-bit version of installer for 32-bit systems only.">
+      <![CDATA[NOT Msix64]]>
+    </Condition>
+    <?endif?>
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="MainDllGroup"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLFOLDER_ROOT" Name="Sketchfab">
+          <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="E61CC0B6-0616-4E15-8C07-BBF50F57B6C2">
+        <File Id="SketchfabPublisherDLL" Source="$(var.SourceOutDir)\SketchfabPublisher.dll" />
+        <File Id="solidworkstoolsDLL" Source="$(var.SourceOutDir)\solidworkstools.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

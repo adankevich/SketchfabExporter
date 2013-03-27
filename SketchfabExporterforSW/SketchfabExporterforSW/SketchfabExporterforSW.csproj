@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,7 +86,9 @@ IF EXIST "%25Windir%25\Microsoft.NET\Framework64\%25FMWK%25\regasm.exe" "%25Wind
 GOTO END
 
 :END
-</PostBuildEvent>
+
+
+"C:\Program Files (x86)\WiX Toolset v3.6\bin\heat.exe" file "$(TargetPath)" -gg -srd -cg MainDllGroup -var var.SourceOutDir -dr INSTALLFOLDER -o "$(ProjectDir)..\SetupProject\AddinComponent.wxs"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

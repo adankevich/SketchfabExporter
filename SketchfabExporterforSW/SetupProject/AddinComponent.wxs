@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER" />
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="MainDllGroup">
+            <Component Id="cmpF0BD9BE22091CD5ED7BFD45C2E964C3D" Directory="INSTALLFOLDER" Guid="{321AA961-D7B8-482B-A825-E3351DA01812}">
+                <Class Id="{98EBB85E-9C91-47BE-B5A2-F177609F7A80}" Context="InprocServer32" Description="SketchfabExporterforSW.SwAddin" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SketchfabExporterforSW.SwAddin" Description="SketchfabExporterforSW.SwAddin" />
+                </Class>
+                <File Id="fil2B8FCD8B64C4B77B06CEC2279E6A74C4" KeyPath="yes" Source="$(var.SourceOutDir)\SketchfabExporterforSW.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32\0.2.0.0" Name="Class" Value="SketchfabExporterforSW.SwAddin" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32" Name="Class" Value="SketchfabExporterforSW.SwAddin" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{98EBB85E-9C91-47BE-B5A2-F177609F7A80}\InprocServer32" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{012B185D-A0CF-45F7-A1F7-E651EACE326A}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swSaveAsVersion_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{012B185D-A0CF-45F7-A1F7-E651EACE326A}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{012B185D-A0CF-45F7-A1F7-E651EACE326A}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{012B185D-A0CF-45F7-A1F7-E651EACE326A}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{55A9AAAE-97D1-4621-A5A9-21A67CDCE87A}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swDocumentTypes_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{55A9AAAE-97D1-4621-A5A9-21A67CDCE87A}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{55A9AAAE-97D1-4621-A5A9-21A67CDCE87A}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{55A9AAAE-97D1-4621-A5A9-21A67CDCE87A}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{6580B9A0-6F9D-45E9-A623-CA4CB4628FFD}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swSummInfoField_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{6580B9A0-6F9D-45E9-A623-CA4CB4628FFD}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{6580B9A0-6F9D-45E9-A623-CA4CB4628FFD}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{6580B9A0-6F9D-45E9-A623-CA4CB4628FFD}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A140F015-A916-4BC9-9323-4572D8C71152}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swUserPreferenceToggle_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A140F015-A916-4BC9-9323-4572D8C71152}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A140F015-A916-4BC9-9323-4572D8C71152}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A140F015-A916-4BC9-9323-4572D8C71152}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A39D1A60-DD4A-4118-8227-4FA71CCCDD80}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swSaveAsOptions_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A39D1A60-DD4A-4118-8227-4FA71CCCDD80}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A39D1A60-DD4A-4118-8227-4FA71CCCDD80}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{A39D1A60-DD4A-4118-8227-4FA71CCCDD80}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B5F3D5F3-81D1-4AB8-8ABF-7EAD0C4EAB05}\0.2.0.0" Name="Class" Value="SolidWorks.Interop.swconst.swMenuIdentifiers_e" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B5F3D5F3-81D1-4AB8-8ABF-7EAD0C4EAB05}\0.2.0.0" Name="Assembly" Value="SketchfabExporterforSW, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B5F3D5F3-81D1-4AB8-8ABF-7EAD0C4EAB05}\0.2.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B5F3D5F3-81D1-4AB8-8ABF-7EAD0C4EAB05}\0.2.0.0" Name="CodeBase" Value="file:///[#fil2B8FCD8B64C4B77B06CEC2279E6A74C4]" Type="string" Action="write" />
+                <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{98ebb85e-9c91-47be-b5a2-f177609f7a80}" Value="0" Type="integer" Action="write" />
+                <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{98ebb85e-9c91-47be-b5a2-f177609f7a80}" Name="Description" Value="Upload your 3D models to Sketchfab!" Type="string" Action="write" />
+                <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{98ebb85e-9c91-47be-b5a2-f177609f7a80}" Name="Title" Value="Sketchfab Exporter Beta" Type="string" Action="write" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

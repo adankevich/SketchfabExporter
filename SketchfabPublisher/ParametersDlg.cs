@@ -183,9 +183,10 @@ namespace SketchfabPublisher
             else
             {
                 MessageBox.Show(
-                    "Failed to upload the model to Sketfab.com." + Environment.NewLine +
-                    "Error: " + error,
-                    "Seketfab Exporter");
+                    "Failed to upload the model to Sketchfab.com." + Environment.NewLine +
+                    (String.IsNullOrWhiteSpace (error) ? "" : "Error: " + error) +
+                    (String.IsNullOrWhiteSpace(warn) ? "" : "Warn: " + warn),
+                    "Sketchfab Exporter");
             }
 
             if (false == String.IsNullOrWhiteSpace(APIToken))

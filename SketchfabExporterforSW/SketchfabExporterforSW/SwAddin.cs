@@ -154,7 +154,6 @@ namespace SketchfabExporterforSW
                 Microsoft.Win32.RegistryKey addinkey = hklm.CreateSubKey(keyname);
                 addinkey.SetValue(null, 0);
 
-                //TODO can I change these Desciption= Rapid Sheet Metal - Rapid Quote Plug in    Tittle= Rapid Sheet Metal 2012 
                 addinkey.SetValue("Description", SWattr.Description);
                 addinkey.SetValue("Title", SWattr.Title);
 #if DEBUG
@@ -359,9 +358,7 @@ namespace SketchfabExporterforSW
                     source: "solidworks-" + getSWVersion()
                 );
 
-                var result = form.ShowDialog();
-
-                if (result == DialogResult.OK && form.ToSaveSummaryInfo)
+                if (form.ShowDialog() == DialogResult.OK && form.ToSaveSummaryInfo)
                 {
                     this.ModelName = form.ModelTitle;
                     this.Description = form.ModelDescription;

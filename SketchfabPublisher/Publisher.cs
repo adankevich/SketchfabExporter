@@ -37,10 +37,11 @@ namespace SketchfabPublisher
 
                 // Get the URI from the command line.
                 Uri httpSite = new Uri(@"https://api.sketchfab.com/model");
-                //Uri httpSite = new Uri(@"https://dev.sketchfab.com/model");
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
 
                 // Create a 'WebRequest' object with the specified url. 
-                WebRequest myWebRequest = WebRequest.Create(httpSite);
+                var myWebRequest = WebRequest.Create(httpSite) as HttpWebRequest;
                 myWebRequest.Method = "POST";
 
                 // Write the payload to the request.
@@ -55,7 +56,6 @@ namespace SketchfabPublisher
                         encoding.GetByteCount(json_str));
                 }
 
-
                 // Send the 'WebRequest' and wait for response.
                 WebResponse myWebResponse = myWebRequest.GetResponse();
 
@@ -63,7 +63,6 @@ namespace SketchfabPublisher
                 string fullResponse = read.ReadToEnd();
 
                 var json_response = JSON.toJSON(fullResponse, typeof(SketchfabWebResponse)) as SketchfabWebResponse;
-
                 if (json_response == null)
                     return null;
 
@@ -75,8 +74,10 @@ namespace SketchfabPublisher
 
                 return json_response.id;
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Trace.WriteLine("Sketchfab SW publishing failed. Message: " + ex.Message);
+
                 return null;
             }
         }
